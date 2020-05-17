@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <sidebar />
-    <div class="layout-container">
+    <sidebar :opened="!opened" />
+    <div class="layout-container" :class="{ hideSidebarWidth: !opened }">
       <navbar :opened="opened" class="layout-container__navbar" />
       <app-main class="layout-container__main" />
     </div>
@@ -29,11 +29,12 @@ export default {
 @import "@/styles/var.scss";
 
 .layout {
-  position: relative;
-  // height: 100%;
-
   &-container {
+    transition: margin 0.3s ease-in-out;
     margin-left: $sideBarWidth;
+  }
+  .hideSidebarWidth {
+    margin-left: $hideSidebarWidth;
   }
 }
 </style>

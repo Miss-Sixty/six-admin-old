@@ -7,7 +7,7 @@
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
-        :collapse="isCollapse"
+        :collapse="opened"
       >
         <el-submenu index="1">
           <template slot="title">
@@ -73,6 +73,9 @@ import SidebarLogo from "./Logo.vue";
 export default {
   components: {
     SidebarLogo
+  },
+  props: {
+    opened: Boolean
   },
   data() {
     return {
