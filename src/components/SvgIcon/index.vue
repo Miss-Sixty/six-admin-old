@@ -1,5 +1,11 @@
 <template>
-  <svg v-if="iconName" :class="svgClass" aria-hidden="true" v-on="$listeners">
+  <svg
+    v-if="iconName"
+    :class="svgClass"
+    aria-hidden="true"
+    v-on="$listeners"
+    :style="{ height: height, width: width }"
+  >
     <use :href="iconName" />
   </svg>
 </template>
@@ -12,7 +18,9 @@ export default {
     className: {
       type: String,
       default: ""
-    }
+    },
+    height: String,
+    width: String
   },
   computed: {
     iconName() {

@@ -2,7 +2,7 @@
   <div class="layout">
     <sidebar :opened="!opened" />
     <div class="layout-container" :class="{ hideSidebarWidth: !opened }">
-      <navbar :opened="opened" class="layout-container__navbar" />
+      <navbar class="layout-container__navbar" />
       <app-main class="layout-container__main" />
     </div>
   </div>

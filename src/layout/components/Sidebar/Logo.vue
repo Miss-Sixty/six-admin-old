@@ -33,7 +33,7 @@ export default {
   display: inline-block;
 
   .svg-icon {
-    font-size: 32px;
+    font-size: 30px;
     color: #409eff;
     vertical-align: middle;
     display: inline;
