@@ -1,17 +1,16 @@
 <template>
   <div class="navbar">
     <div class="navbar-icon" @click="toggleSideBar">
-      <svg-icon
-        icon-class="hamburger"
-        :class="{ 'is-active': opened }"
-        width="20px"
-        height="20px"
-      />
+      <svg-icon icon-class="hamburger" :class="{ 'is-active': opened }" />
     </div>
 
     <div class="right-menu">
       <div class="navbar-icon">
         <screenfull />
+      </div>
+
+      <div class="navbar-icon">
+        <svg-icon icon-class="github" />
       </div>
 
       <el-dropdown trigger="click" class=" navbar-icon">
