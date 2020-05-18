@@ -4,7 +4,9 @@ import router from "./router";
 import store from "./store";
 import "./plugins/element.js";
 import "@/styles/index.scss";
+
 import "@/icons"; // icon
+import "./permission"; // permission control
 
 Vue.config.productionTip = false;
 
