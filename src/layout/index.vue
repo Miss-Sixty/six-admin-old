@@ -32,9 +32,10 @@ export default {
   &-container {
     transition: margin 0.3s ease-in-out;
     margin-left: $sideBarWidth;
-  }
-  .hideSidebarWidth {
-    margin-left: $hideSidebarWidth;
+
+    &.hideSidebarWidth {
+      margin-left: $hideSidebarWidth;
+    }
   }
 }
 </style>

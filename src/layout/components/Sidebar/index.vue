@@ -1,12 +1,11 @@
 <template>
-  <div class="sidebar">
-    <sidebar-logo />
+  <div class="sidebar" :class="{ sidebarWidth: opened }">
+    <sidebar-logo :opened="opened" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        default-active="1-4-1"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
+        class="sidebar-menu"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
         :collapse="opened"
       >
         <el-submenu index="1">
@@ -70,12 +69,18 @@
 
 <script>
 import SidebarLogo from "./Logo.vue";
+import variables from "@/styles/var.scss";
 export default {
   components: {
     SidebarLogo
   },
   props: {
     opened: Boolean
+  },
+  computed: {
+    variables() {
+      return variables;
+    }
   },
   data() {
     return {
@@ -101,18 +106,29 @@ export default {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: antiquewhite;
-
-  ::v-deep.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: $sideBarWidth;
-    overflow: hidden;
+  background-color: $menuBg;
+  transition: width 0.3s ease-in-out;
+  width: $sideBarWidth;
+  &.sidebarWidth {
+    width: $hideSidebarWidth;
   }
 
-  ::v-deep.el-scrollbar {
-    height: calc(100% - 50px);
+  ::v-deep {
+    .sidebar-menu:not(.el-menu--collapse) {
+      width: $sideBarWidth;
+      overflow: hidden;
+    }
 
-    .scrollbar-wrapper {
-      overflow-x: hidden !important;
+    .el-scrollbar {
+      height: calc(100% - 50px);
+
+      .scrollbar-wrapper {
+        overflow-x: hidden !important;
+      }
+
+      .el-menu {
+        border: 0;
+      }
     }
   }
 }
