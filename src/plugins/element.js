@@ -10,11 +10,19 @@ import {
   DropdownMenu,
   DropdownItem,
   Image,
-  Message
+  Message,
+  Form,
+  FormItem,
+  Input,
+  Button
 } from "element-ui";
 
 Vue.use(Menu)
   .use(Submenu)
+  .use(Form)
+  .use(FormItem)
+  .use(Input)
+  .use(Button)
   .use(Image)
   .use(MenuItemGroup)
   .use(Tooltip)

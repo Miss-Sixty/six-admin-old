@@ -22,7 +22,7 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done();
     }
   } else {
-    if (to.path !== "/login") return next();
+    if (to.path === "/login") return next();
 
     next(`/login?redirect=${to.path}`);
     NProgress.done();

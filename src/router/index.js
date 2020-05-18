@@ -1,29 +1,41 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 /* Layout */
-import Layout from "@/layout";
+// import Layout from "@/layout";
 
 Vue.use(VueRouter);
 
-const routes = [
+export const constantRoutes = [
   {
-    path: "/",
-    name: "Layout",
-    component: Layout,
-    redirect: "/dashboard",
-    children: [
-      {
-        path: "dashboard",
-        component: () => import("@/views/dashboard"),
-        name: "Dashboard",
-        meta: { title: "首页", icon: "dashboard", affix: true }
-      }
-    ]
+    path: "/login",
+    hidden: true,
+    component: () => import("@/views/login")
   }
 ];
 
+// const routes = [
+//   {
+//     path: "/",
+//     name: "Layout",
+//     component: Layout,
+//     redirect: "/dashboard",
+//     children: [
+//       {
+//         path: "dashboard",
+//         component: () => import("@/views/dashboard"),
+//         name: "Dashboard",
+//         meta: { title: "首页", icon: "dashboard", affix: true },
+//       },
+//     ],
+//   },
+// ];
+
 const router = new VueRouter({
-  routes
+  mode: "hash",
+  scrollBehavior: () => ({
+    y: 0
+  }),
+  routes: constantRoutes
 });
 
 export default router;
