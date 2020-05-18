@@ -83,15 +83,15 @@ export default {
       this.$refs["loginForm"].validate(valid => {
         if (valid) {
           this.loding = true;
-          this.$store
-            .dispatch("user/login", this.loginForm)
-            .then(() => {
-              this.$router.push("/");
-              this.loding = false;
-            })
-            .catch(() => {
-              this.loding = false;
-            });
+          // this.$store
+          //   .dispatch("user/login", this.loginForm)
+          //   .then(() => {
+          //     // this.$router.push("/");
+          //     // this.loding = false;
+          //   })
+          //   .catch(() => {
+          //     this.loding = false;
+          //   });
         } else {
           return false;
         }
