@@ -9,9 +9,13 @@
         <screenfull />
       </div>
 
-      <div class="navbar-icon">
+      <a
+        class="navbar-icon"
+        href="https://github.com/Miss-Sixty/six-admin"
+        target="_bleak"
+      >
         <svg-icon icon-class="github" />
-      </div>
+      </a>
 
       <el-dropdown trigger="click" class=" navbar-icon">
         <div class="right-menu__avatar">
@@ -20,13 +24,10 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <a target="_blank" href="">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
+            <span style="display:block;">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -89,6 +90,11 @@ export default {
 
       > img {
         border-radius: 6px;
+      }
+      .el-icon-caret-bottom {
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 6px;
       }
     }
   }
