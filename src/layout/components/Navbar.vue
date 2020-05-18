@@ -10,8 +10,12 @@
     </div>
 
     <div class="right-menu">
-      <el-dropdown trigger="click">
-        <div class="right-menu__avatar navbar-icon">
+      <div class="navbar-icon">
+        <screenfull />
+      </div>
+
+      <el-dropdown trigger="click" class=" navbar-icon">
+        <div class="right-menu__avatar">
           <img width="40" height="40" :src="avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
@@ -33,7 +37,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Screenfull from "@/components/Screenfull";
 export default {
+  components: { Screenfull },
   computed: {
     ...mapGetters(["opened", "avatar"])
   },
