@@ -1,5 +1,11 @@
 const { resolve } = require("path");
+
 module.exports = {
+  publicPath: "/",
+  lintOnSave: process.env.NODE_ENV === "development",
+  devServer: {
+    before: require("./mock/mock-server.js")
+  },
   chainWebpack(config) {
     config.module
       .rule("svg")

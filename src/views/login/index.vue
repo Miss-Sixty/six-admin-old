@@ -81,20 +81,21 @@ export default {
   methods: {
     loginChange() {
       this.$refs["loginForm"].validate(valid => {
-        if (valid) {
-          this.loding = true;
-          // this.$store
-          //   .dispatch("user/login", this.loginForm)
-          //   .then(() => {
-          //     // this.$router.push("/");
-          //     // this.loding = false;
-          //   })
-          //   .catch(() => {
-          //     this.loding = false;
-          //   });
-        } else {
-          return false;
-        }
+        if (!valid) return;
+        this.loding = true;
+        this.$store
+          .dispatch("user/login", this.loginForm)
+          .then(() => {
+            this.$message({
+              message: "登录成功",
+              type: "success"
+            });
+            this.$router.push("/");
+            this.loding = false;
+          })
+          .catch(() => {
+            this.loding = false;
+          });
       });
     }
   }
