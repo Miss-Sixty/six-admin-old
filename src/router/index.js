@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 import Layout from "@/layout";
 
 import nestedRouter from "./modules/nested";
+import errorRouter from "./modules/error";
 
 /**
  * constantRoutes
@@ -28,7 +29,7 @@ export const constantRoutes = [
         path: "home",
         component: () => import("@/views/dashboard"),
         name: "home",
-        meta: { title: "首页", icon: "home", affix: true }
+        meta: { title: "首页", icon: "home" }
       }
     ]
   },
@@ -41,7 +42,7 @@ export const constantRoutes = [
         path: "index",
         component: () => import("@/views/guide/index"),
         name: "Guide",
-        meta: { title: "引导页", icon: "guide", noCache: true }
+        meta: { title: "引导页", icon: "guide" }
       }
     ]
   }
@@ -61,58 +62,24 @@ export const asyncRoutes = [
         path: "index",
         component: () => import("@/views/icons/index"),
         name: "Icons",
-        meta: { title: "图标", icon: "icon", noCache: true }
+        meta: { title: "图标", icon: "icon" }
       }
     ]
   },
+  errorRouter,
   {
-    path: "/error",
+    path: "/charts",
     component: Layout,
-    redirect: "noRedirect",
-    name: "ErrorPages",
-    meta: {
-      title: "错误页面",
-      icon: "404"
-    },
+    redirect: "/charts/index",
     children: [
       {
-        path: "401",
-        component: () => import("@/views/error-page/401"),
-        name: "Page401",
-        meta: { title: "401", noCache: true }
-      },
-      {
-        path: "404",
-        component: () => import("@/views/error-page/404"),
-        name: "Page404",
-        meta: { title: "404", noCache: true }
+        path: "index",
+        component: () => import("@/views/charts/index"),
+        name: "Charts",
+        meta: { title: "图表", icon: "charts" }
       }
     ]
   }
-  // {
-  //   path: "/error",
-  //   component: Layout,
-  //   redirect: "noRedirect",
-  //   name: "ErrorPages",
-  //   meta: {
-  //     title: "Error Pages",
-  //     icon: "404",
-  //   },
-  //   children: [
-  //     {
-  //       path: "401",
-  //       component: () => import("@/views/error-page/401"),
-  //       name: "Page401",
-  //       meta: { title: "401", noCache: true },
-  //     },
-  //     {
-  //       path: "404",
-  //       component: () => import("@/views/error-page/404"),
-  //       name: "Page404",
-  //       meta: { title: "404", noCache: true },
-  //     },
-  //   ],
-  // },
   // 404 page must be placed at the end !!!
   // { path: "*", redirect: "/404", hidden: true },
 ];

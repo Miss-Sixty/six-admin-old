@@ -15,10 +15,16 @@ import {
   FormItem,
   Input,
   Button,
-  Alert
+  Alert,
+  Row,
+  Col,
+  Card
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Card)
+  .use(Row)
+  .use(Col)
   .use(Alert)
   .use(Submenu)
   .use(Form)
