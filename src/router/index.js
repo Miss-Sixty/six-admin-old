@@ -52,7 +52,19 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
-  nestedRouter
+  nestedRouter,
+  {
+    path: "/icon",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/icons/index"),
+        name: "Icons",
+        meta: { title: "图标", icon: "icon", noCache: true }
+      }
+    ]
+  }
   // {
   //   path: "/error",
   //   component: Layout,

@@ -19,8 +19,6 @@ export default {
 
 <style scoped lang="scss">
 .app-main {
-  background-color: beige;
-
   /* 50= navbar  50  */
   min-height: calc(100vh - 50px);
   width: 100%;
