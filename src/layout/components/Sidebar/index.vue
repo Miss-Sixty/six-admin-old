@@ -1,8 +1,8 @@
 <template>
-  <div class="sidebar" :class="{ sidebarWidth: opened }">
-    <sidebar-logo :opened="opened" />
+  <div class="sidebar" :class="{ sidebarWidth: !opened }">
+    <sidebar-logo :opened="!opened" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
+      <!-- <el-menu
         class="sidebar-menu"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
@@ -62,7 +62,8 @@
             <el-menu-item index="1-4-1">选项1</el-menu-item>
           </el-submenu>
         </el-submenu>
-      </el-menu>
+      </el-menu> -->
+      {{ permission_routes }}
     </el-scrollbar>
   </div>
 </template>
@@ -70,17 +71,16 @@
 <script>
 import SidebarLogo from "./Logo.vue";
 import variables from "@/styles/var.scss";
+import { mapGetters } from "vuex";
 export default {
   components: {
     SidebarLogo
   },
-  props: {
-    opened: Boolean
-  },
   computed: {
     variables() {
       return variables;
-    }
+    },
+    ...mapGetters(["opened", "permission_routes"])
   },
   data() {
     return {

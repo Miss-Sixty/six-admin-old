@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <sidebar :opened="!opened" />
+    <sidebar />
     <div class="layout-container" :class="{ hideSidebarWidth: !opened }">
       <navbar class="layout-container__navbar" />
       <app-main class="layout-container__main" />
