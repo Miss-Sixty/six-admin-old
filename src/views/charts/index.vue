@@ -50,15 +50,13 @@ export default {
           name: "预期",
           type: "line",
           smooth: true,
-          data: [820, 1032, 901, 984, 1290, 1230, 1320],
-          animationDuration: 3000
+          data: [820, 1032, 901, 984, 1290, 1230, 1320]
         },
         {
           name: "实际",
           type: "line",
           smooth: true,
           data: [980, 962, 821, 834, 1000, 1300, 1680],
-          animationDuration: 3000,
           animationEasing: "cubicInOut"
         }
       ],
@@ -69,14 +67,12 @@ export default {
         {
           name: "预期",
           type: "bar",
-          data: [1032, 901, 984, 1290, 1230],
-          animationDuration: 3000
+          data: [1032, 901, 984, 1290, 1230]
         },
         {
           name: "实际",
           type: "bar",
           data: [962, 821, 834, 1000, 1300],
-          animationDuration: 3000,
           animationEasing: "cubicInOut"
         }
       ],
