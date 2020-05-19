@@ -2,68 +2,21 @@
   <div class="sidebar" :class="{ sidebarWidth: !opened }">
     <sidebar-logo :opened="!opened" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <!-- <el-menu
+      <el-menu
         class="sidebar-menu"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
-        :collapse="opened"
+        :collapse="!opened"
+        router
+        :default-active="$route.path"
       >
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">导航一232323232323232323</span>
-          </template>
-          <el-menu-item-group>
-            <span slot="title">分组一</span>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <span slot="title">选项4</span>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">导航一</span>
-          </template>
-          <el-menu-item-group>
-            <span slot="title">分组一</span>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <span slot="title">选项4</span>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">导航一</span>
-          </template>
-          <el-menu-item-group>
-            <span slot="title">分组一</span>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <span slot="title">选项4</span>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-      </el-menu> -->
-      {{ permission_routes }}
+        <sidebar-item
+          v-for="route in permission_routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
+      </el-menu>
     </el-scrollbar>
   </div>
 </template>
@@ -72,9 +25,11 @@
 import SidebarLogo from "./Logo.vue";
 import variables from "@/styles/var.scss";
 import { mapGetters } from "vuex";
+import SidebarItem from "./SidebarItem";
 export default {
   components: {
-    SidebarLogo
+    SidebarLogo,
+    SidebarItem
   },
   computed: {
     variables() {
@@ -109,6 +64,7 @@ export default {
   background-color: $menuBg;
   transition: width 0.3s ease-in-out;
   width: $sideBarWidth;
+  font-size: 0px;
   &.sidebarWidth {
     width: $hideSidebarWidth;
   }

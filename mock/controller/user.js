@@ -11,13 +11,13 @@ const users = {
   "admin-token": {
     roles: ["admin"],
     introduction: "超级管理员",
-    avatar: require("../../src/assets/imgs/avatar.gif"),
+    avatar: "https://s1.ax1x.com/2020/05/19/Y4NK81.gif",
     name: "Super Admin"
   },
   "editor-token": {
     roles: ["editor"],
     introduction: "我是一名编辑",
-    avatar: require("../../src/assets/imgs/avatar.gif"),
+    avatar: "https://s1.ax1x.com/2020/05/19/Y4NK81.gif",
     name: "Normal Editor"
   }
 };

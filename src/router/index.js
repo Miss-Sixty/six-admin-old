@@ -1,9 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
 /* Layout */
 import Layout from "@/layout";
 
-Vue.use(VueRouter);
+import nestedRouter from "./modules/nested";
 
 /**
  * constantRoutes
@@ -19,16 +22,17 @@ export const constantRoutes = [
     path: "/",
     name: "Layout",
     component: Layout,
-    redirect: "/dashboard",
+    redirect: "/home",
     children: [
       {
-        path: "dashboard",
+        path: "home",
         component: () => import("@/views/dashboard"),
-        name: "Dashboard",
-        meta: { title: "首页", icon: "dashboard", affix: true }
+        name: "home",
+        meta: { title: "首页", icon: "home", affix: true }
       }
     ]
-  }
+  },
+  nestedRouter
 ];
 
 /**

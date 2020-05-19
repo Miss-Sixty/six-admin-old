@@ -14,10 +14,12 @@ import {
   Form,
   FormItem,
   Input,
-  Button
+  Button,
+  Alert
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Alert)
   .use(Submenu)
   .use(Form)
   .use(FormItem)
