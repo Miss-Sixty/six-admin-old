@@ -32,7 +32,19 @@ export const constantRoutes = [
       }
     ]
   },
-  nestedRouter
+  {
+    path: "/guide",
+    component: Layout,
+    redirect: "/guide/index",
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/guide/index"),
+        name: "Guide",
+        meta: { title: "引导页", icon: "guide", noCache: true }
+      }
+    ]
+  }
 ];
 
 /**
@@ -40,6 +52,7 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
+  nestedRouter
   // {
   //   path: "/error",
   //   component: Layout,
