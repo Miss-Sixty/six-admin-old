@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <aside class="guide">
+    <aside>
       引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本
       Demo 是基于
       <a
@@ -54,24 +54,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-@import "@/styles/var.scss";
-
-.guide {
-  background: #eef1f6;
-  padding: 8px 24px;
-  margin-bottom: 20px;
-  border-radius: 2px;
-  display: block;
-  line-height: 32px;
-
-  a {
-    color: $blue;
-    cursor: pointer;
-
-    &:hover {
-      color: rgba($color: $blue, $alpha: 0.6);
-    }
-  }
-}
-</style>

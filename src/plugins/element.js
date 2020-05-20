@@ -18,10 +18,20 @@ import {
   Alert,
   Row,
   Col,
-  Card
+  Card,
+  Badge,
+  Dialog,
+  Table,
+  TableColumn,
+  Tag
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Tag)
+  .use(Badge)
+  .use(Dialog)
+  .use(Table)
+  .use(TableColumn)
   .use(Card)
   .use(Row)
   .use(Col)

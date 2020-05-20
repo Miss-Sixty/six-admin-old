@@ -6,7 +6,8 @@ import "./plugins/element.js";
 import "@/styles/index.scss";
 
 import "@/icons"; // icon
-import "./permission"; // permission control
+import "@/permission"; // permission control
+import "@/utils/error-log"; // error log
 
 const { mockXHR } = require("../mock");
 mockXHR();

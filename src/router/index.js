@@ -79,6 +79,18 @@ export const asyncRoutes = [
         meta: { title: "图表", icon: "charts" }
       }
     ]
+  },
+  {
+    path: "/error-log",
+    component: Layout,
+    children: [
+      {
+        path: "log",
+        component: () => import("@/views/error-log/index"),
+        name: "ErrorLog",
+        meta: { title: "错误日志", icon: "bug" }
+      }
+    ]
   }
   // 404 page must be placed at the end !!!
   // { path: "*", redirect: "/404", hidden: true },

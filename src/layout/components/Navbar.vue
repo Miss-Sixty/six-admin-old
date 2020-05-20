@@ -5,6 +5,8 @@
     </div>
 
     <div class="right-menu">
+      <error-log class="navbar-icon" />
+
       <div class="navbar-icon">
         <screenfull />
       </div>
@@ -38,8 +40,9 @@
 <script>
 import { mapGetters } from "vuex";
 import Screenfull from "@/components/Screenfull";
+import ErrorLog from "@/components/ErrorLog";
 export default {
-  components: { Screenfull },
+  components: { Screenfull, ErrorLog },
   computed: {
     ...mapGetters(["opened", "avatar"])
   },

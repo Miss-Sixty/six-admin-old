@@ -41,3 +41,21 @@ li {
 ul {
   padding: 0;
 }
+
+aside {
+  background: #eef1f6;
+  padding: 8px 24px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  display: block;
+  line-height: 32px;
+
+  a {
+    color: #409eff;
+    cursor: pointer;
+
+    &:hover {
+      color: rgba($color: #409eff, $alpha: 0.6);
+    }
+  }
+}
