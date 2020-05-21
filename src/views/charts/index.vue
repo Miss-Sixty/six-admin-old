@@ -1,35 +1,46 @@
 <template>
-  <el-row :gutter="20" class="app-container">
-    <el-col :span="12">
-      <el-card class="box-card" header="折线图">
-        <line-chart
-          :x-data="lineXData"
-          :y-data="lineYData"
-          :legend-data="lineLegendData"
-        />
-      </el-card>
-    </el-col>
+  <div class="app-container">
+    <aside>
+      本 Demo 基于
+      <a
+        href="https://github.com/ecomfe/vue-echarts"
+        target="_blank"
+        id="driverjs"
+        >vue-echarts</a
+      >
+    </aside>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-card class="box-card" header="折线图">
+          <line-chart
+            :x-data="lineXData"
+            :y-data="lineYData"
+            :legend-data="lineLegendData"
+          />
+        </el-card>
+      </el-col>
 
-    <el-col :span="12">
-      <el-card class="box-card" header="柱状图">
-        <bar-chart
-          :x-data="barXData"
-          :y-data="barYData"
-          :legend-data="barLegendData"
-        />
-      </el-card>
-    </el-col>
+      <el-col :span="12">
+        <el-card class="box-card" header="柱状图">
+          <bar-chart
+            :x-data="barXData"
+            :y-data="barYData"
+            :legend-data="barLegendData"
+          />
+        </el-card>
+      </el-col>
 
-    <el-col :span="12">
-      <el-card class="box-card" header="南丁格尔玫瑰图">
-        <pie-chart
-          :x-data="pieXData"
-          :y-data="pieYData"
-          :legend-data="pieLegendData"
-        />
-      </el-card>
-    </el-col>
-  </el-row>
+      <el-col :span="12">
+        <el-card class="box-card" header="南丁格尔玫瑰图">
+          <pie-chart
+            :x-data="pieXData"
+            :y-data="pieYData"
+            :legend-data="pieLegendData"
+          />
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 <script>
 import LineChart from "./components/LineChart";
