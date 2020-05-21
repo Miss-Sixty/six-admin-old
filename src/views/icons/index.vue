@@ -1,17 +1,20 @@
 <template>
-  <ul class="icons-container">
-    <li
-      v-for="item of svgIcons"
-      :key="item"
-      @click="handleClipboard(item, $event)"
-      class="icons"
-    >
-      <p class="icons-item">
-        <svg-icon :icon-class="item" class-name="disabled" />
-        <span>{{ item }}</span>
-      </p>
-    </li>
-  </ul>
+  <div class="app-container">
+    <aside>可直接点击复制图标。</aside>
+    <ul class="icons-container">
+      <li
+        v-for="item of svgIcons"
+        :key="item"
+        @click="handleClipboard(item, $event)"
+        class="icons"
+      >
+        <p class="icons-item">
+          <svg-icon :icon-class="item" class-name="disabled" />
+          <span>{{ item }}</span>
+        </p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -60,7 +63,6 @@ export default {
   overflow: hidden;
   border: 1px solid #eaeefb;
   border-radius: 4px;
-  margin: 20px;
   .icons {
     float: left;
     width: 12.5%;
