@@ -1,6 +1,12 @@
 <template>
   <div class="app-container">
-    <aside>可直接点击复制图标。</aside>
+    <aside>
+      点击即可复制图标。本项目图标优先使用
+      <a href="https://remixicon.com/" target="_black">REMIX ICON</a>
+      , 其次使用阿里
+      <a href="https://www.iconfont.cn/" target="_black">Iconfont</a>
+      。
+    </aside>
     <ul class="icons-container">
       <li
         v-for="item of svgIcons"
