@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <div class="navbar-icon" @click="toggleSideBar">
+    <div class="navbar-icon" @click="toggleSideBar" style="padding:0 15px">
       <svg-icon icon-class="hamburger" :class="{ 'is-active': opened }" />
     </div>
 
@@ -19,13 +19,13 @@
         <svg-icon icon-class="github" />
       </a>
 
-      <el-dropdown trigger="click" class=" navbar-icon">
+      <el-dropdown trigger="click" class="navbar-icon">
         <div class="right-menu__avatar">
           <img width="40" height="40" :src="avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <a target="_blank" href="">
+          <a target="_blank" href>
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
