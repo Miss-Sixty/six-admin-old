@@ -1,47 +1,45 @@
 <template>
   <table class="table">
-    <tr>
-      <td>Vue CLI</td>
-      <td>{{ devDependencies["@vue/cli-service"] }}</td>
-    </tr>
-    <tr>
-      <td>Vue</td>
-      <td>{{ dependencies.vue }}</td>
-    </tr>
-    <tr>
-      <td>Vuex</td>
-      <td>{{ dependencies.vuex }}</td>
-    </tr>
-    <tr>
-      <td>Vue Router</td>
-      <td>{{ dependencies["vue-router"] }}</td>
-    </tr>
-    <tr>
-      <td>Element</td>
-      <td>{{ dependencies["element-ui"] }}</td>
-    </tr>
-    <tr>
-      <td>axios</td>
-      <td>{{ dependencies.axios }}</td>
-    </tr>
-    <tr>
-      <td>Sass</td>
-      <td>{{ devDependencies.sass }}</td>
-    </tr>
-    <tr>
-      <td>ESlint</td>
-      <td>{{ devDependencies.eslint }}</td>
+    <tr v-for="item in versionData" :key="item.name">
+      <td>
+        <el-tag type="success">{{ item.name }}</el-tag>
+      </td>
+      <td>{{ item.version }}</td>
     </tr>
   </table>
 </template>
 <script>
 import { dependencies, devDependencies } from "../../../../../package.json";
 export default {
-  data() {
-    return {
-      dependencies,
-      devDependencies
-    };
+  computed: {
+    versionData() {
+      return [
+        {
+          name: "Vue CLI",
+          version: devDependencies["@vue/cli-service"]
+        },
+        {
+          name: "Vue",
+          version: dependencies["vue"]
+        },
+        {
+          name: "Vuex",
+          version: dependencies["vuex"]
+        },
+        {
+          name: "Vue Router",
+          version: dependencies["vue-router"]
+        },
+        {
+          name: "Element",
+          version: dependencies["element-ui"]
+        },
+        {
+          name: "axios",
+          version: dependencies["axios"]
+        }
+      ];
+    }
   }
 };
 </script>
