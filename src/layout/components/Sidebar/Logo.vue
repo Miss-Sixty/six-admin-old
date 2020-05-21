@@ -1,9 +1,7 @@
 <template>
   <router-link to="/" class="sidebar-logo">
-    <svg-icon :icon-class="settings.logo" />
-    <h1 v-if="!opened" class="sidebar-logo-title">
-      {{ settings.title }}
-    </h1>
+    <img :src="settings.logo" alt="logo" />
+    <h1 v-if="!opened" class="sidebar-logo-title">{{ settings.title }}</h1>
   </router-link>
 </template>
 <script>
@@ -30,13 +28,12 @@ export default {
   text-align: center;
   overflow: hidden;
   font-size: 0;
-  display: inline-block;
+  display: block;
 
-  .svg-icon {
-    font-size: 30px;
-    color: #409eff;
+  > img {
+    width: 30px;
+    height: 30px;
     vertical-align: middle;
-    display: inline;
   }
 
   &-title {
@@ -45,8 +42,7 @@ export default {
     margin-left: 12px;
     color: #fff;
     font-weight: 600;
-    line-height: 50px;
-    font-size: 14px;
+    font-size: 15px;
     font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
     vertical-align: middle;
   }
