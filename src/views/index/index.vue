@@ -5,9 +5,16 @@
       <a href>开源项目</a>
       的代码。如有兴趣可 fork 下来自行查看。
     </aside>
+
+    <info-view />
   </div>
 </template>
 <script>
-export default {};
+import InfoView from "./components/InfoView";
+export default {
+  components: {
+    InfoView
+  }
+};
 </script>
 <style lang="scss" scoped></style>
