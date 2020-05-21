@@ -6,4 +6,5 @@ import "echarts/lib/component/legend"; //名字列表
 import "echarts/lib/chart/line"; //折线图
 import "echarts/lib/chart/bar";
 import "echarts/lib/chart/pie";
+import "echarts/theme/macarons"; // echarts theme
 export default VChart;

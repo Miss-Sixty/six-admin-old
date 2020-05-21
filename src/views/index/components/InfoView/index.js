@@ -80,10 +80,10 @@ export default {
       return (
         <el-row type="flex" justify="space-around">
           {infoList.map((item, index) => (
-            <el-col span={6} key={index} style={colStyle}>
+            <el-col key={index} style={colStyle}>
               <count-to
                 end-val={infoData[item.numName]}
-                duration={2000}
+                duration={3000}
                 style={numStyle}
               />
               <p>{item.name}</p>
@@ -95,14 +95,14 @@ export default {
 
     function content(title, dataInfo) {
       return (
-        <el-col span={11}>
+        <el-col span={12}>
           <el-card header={title}>{infoView(dataInfo)}</el-card>
         </el-col>
       );
     }
 
     return (
-      <el-row type="flex" justify="space-around">
+      <el-row gutter={32}>
         {content("用户总览", userInfo)}
         {content("会员总览", memberInfo)}
       </el-row>
