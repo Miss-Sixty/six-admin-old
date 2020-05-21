@@ -1,0 +1,5 @@
+src/assets
+src/icons/svg
+public
+dist
+node_modules
