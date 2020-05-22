@@ -8,6 +8,7 @@ import Layout from "@/layout";
 
 import nestedRouter from "./modules/nested";
 import errorRouter from "./modules/error";
+import componentsRouter from "./modules/components";
 
 /**
  * constantRoutes
@@ -54,6 +55,7 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   nestedRouter,
+  componentsRouter,
   {
     path: "/icon",
     component: Layout,

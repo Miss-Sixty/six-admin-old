@@ -2,7 +2,7 @@
 
 import Layout from "@/layout";
 
-const nestedRouter = {
+export default {
   path: "/nested",
   component: Layout,
   redirect: "/nested/menu1/menu1-1",
@@ -62,5 +62,3 @@ const nestedRouter = {
     }
   ]
 };
-
-export default nestedRouter;
