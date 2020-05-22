@@ -1,18 +1,8 @@
-/**
- * 该方法只针对tinymce的动态添加，
- * 因为loadedTinymce()中的 tinymce 跟 @/component/Tinymce.vue 中挂载的名字相同。
- * 此代码修改于 https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Tinymce/dynamicLoadScript.js
- */
-
-function loadedTinymce() {
-  return window.tinymce;
-}
-
 export default src => {
   return new Promise((resolve, reject) => {
     const existingScript = document.getElementById(src);
 
-    if (existingScript && loadedTinymce()) {
+    if (existingScript) {
       return resolve();
     }
 

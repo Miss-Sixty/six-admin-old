@@ -1,5 +1,9 @@
 <template>
-  <textarea :id="tinymceId" class="tinymce-textarea" />
+  <textarea
+    :id="tinymceId"
+    class="tinymce-textarea"
+    :style="{ width: containerWidth }"
+  />
 </template>
 
 <script>
@@ -16,8 +20,9 @@ export default {
   props: {
     id: {
       type: String,
-      default:
-        "tinymce-" + +new Date() + ((Math.random() * 1000).toFixed(0) + "")
+      default: `tiny-vue_${Math.floor(Math.random() * 1000)}${String(
+        Date.now()
+      )}`
     },
     value: {
       type: String,
@@ -40,7 +45,8 @@ export default {
     width: {
       type: [Number, String],
       default: "auto"
-    }
+    },
+    outputFormat: String
   },
   data() {
     return {
@@ -53,37 +59,45 @@ export default {
       return /^\d+(\.\d+)?$/.test(width) ? `${width}px` : width;
     }
   },
-
-  mounted() {
-    this.init();
-  },
-
-  activated() {
-    if (window.tinymce) {
-      this.initTinymce();
+  watch: {
+    value(val, prevVal) {
+      if (
+        this.editor &&
+        typeof val === "string" &&
+        val !== prevVal &&
+        val !== this.editor.getContent({ format: this.outputFormat })
+      ) {
+        this.editor.setContent(val);
+      }
     }
   },
 
-  deactivated() {
-    this.destroyTinymce();
-  },
-
-  destroyed() {
-    this.destroyTinymce();
-  },
-  methods: {
-    init() {
-      // dynamic load tinymce from cdn
+  mounted() {
+    if (this.getTinymce() !== null) {
+      this.initialise();
+    } else if (this.$el && this.$el.ownerDocument) {
       load(tinymceCDN)
         .then(() => {
-          this.initTinymce();
+          this.initialise();
         })
         .catch(err => {
           this.$message.error(err.message);
         });
+    }
+  },
+
+  beforeDestroy() {
+    this.destroyTinymce();
+  },
+
+  methods: {
+    getTinymce() {
+      const global = typeof window !== "undefined" ? window : global;
+      return global && global.tinymce ? global.tinymce : null;
     },
-    initTinymce() {
-      window.tinymce.init({
+
+    initialise() {
+      this.getTinymce().init({
         language: "zh_CN",
         selector: `#${this.tinymceId}`,
         height: this.height,
@@ -95,14 +109,26 @@ export default {
         code_dialog_width: 1000,
         imagetools_cors_hosts: ["www.tinymce.com", "codepen.io"], //可以通过imagetools_cors_hosts选件将一系列受支持的图像域（启用了CORS）提供给TinyMCE 。
         default_link_target: "_blank", //在插入/编辑链接时为链接设置默认目标。
-        link_title: false //隐藏对话框中的标题输入。
+        link_title: false, //隐藏对话框中的标题输入。
+        setup: editor => {
+          this.editor = editor;
+          editor.on("init", e => this.initEditor(e, editor));
+        }
       });
     },
+
     destroyTinymce() {
-      const tinymce = window.tinymce.get(this.tinymceId);
-      if (tinymce) {
-        tinymce.destroy();
+      if (this.getTinymce() !== null) {
+        this.getTinymce().remove(this.editor);
       }
+    },
+
+    initEditor(initEvent, editor) {
+      editor.setContent(this.value);
+
+      editor.on("change keyup undo redo", () => {
+        this.$emit("input", editor.getContent({ format: this.outputFormat }));
+      });
     }
   }
 };

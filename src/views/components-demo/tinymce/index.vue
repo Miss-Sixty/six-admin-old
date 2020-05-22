@@ -1,7 +1,19 @@
 <template>
-  <div>
-    tinymce
-    <tinymce v-model="content" :height="300" />
+  <div class="app-container">
+    <aside>
+      富文本编辑器是后台比较常用的功能，此Demo使用的是
+      <a href="https://www.tiny.cloud/docs-4x/">TinyMCE v4</a>。
+      虽然v5已经发布，但是汉化还没有完成，在使用中也出现了一些问题，所以暂不使用，之后视情况升级。
+    </aside>
+
+    <el-row :gutter="20" type="flex">
+      <el-col>
+        <tinymce v-model="content" height="300" width="650" />
+      </el-col>
+      <el-col>
+        <div v-html="content" />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -12,9 +24,8 @@ export default {
   components: { Tinymce },
   data() {
     return {
-      content: `<h1 style="text-align: center;">Welcome to the TinyMCE demo!</h1><p style="text-align: center; font-size: 15px;"><img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" /><ul>
-        <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li><li>Have a specific question? Visit the <a href="https://community.tinymce.com/forum/">Community Forum</a>.</li><li>We also offer enterprise grade support as part of <a href="https://tinymce.com/pricing">TinyMCE premium subscriptions</a>.</li>
-      </ul>`
+      content:
+        '<section style="background-image: linear-gradient(to left, rgb(253, 213, 231), rgb(194, 226, 249)); box-sizing: border-box; text-align: justify; font-size: 16px;"><section style="margin: 10px 0%; position: static; box-sizing: border-box;" powered-by="xiumi.us"><section style="display: inline-block; vertical-align: bottom; width: 40%; box-sizing: border-box;"><section style="position: static; transform: rotateZ(347deg); -webkit-transform: rotateZ(347deg); -moz-transform: rotateZ(347deg); -o-transform: rotateZ(347deg); box-sizing: border-box;" powered-by="xiumi.us"><section style="text-align: left; margin: 0px 0%; position: static; box-sizing: border-box;"><section style="max-width: 100%; vertical-align: middle; display: inline-block; line-height: 0; width: 90%; box-sizing: border-box;"><img class="raw-image" style="vertical-align: middle; max-width: 100%; width: 100%; box-sizing: border-box;" data-ratio="0.2874251" data-w="167" _width="100%" src="https://statics.xiumi.us/stc/images/templates-assets/tpl-paper/image/5e4ac8f833c4e6eb1e0b2edcb50fddc6-sz_1728.png"></section></section></section></section><section class="group-empty" style="display: inline-block; vertical-align: bottom; width: 60%; box-sizing: border-box; line-height: 0;"><section style="line-height: 0;width:0;"><svg viewBox="0 0 1 1" style="vertical-align:top"></svg></section></section></section><section style="box-sizing: border-box;" powered-by="xiumi.us"><p style="margin: 0px; padding: 0px; box-sizing: border-box;"><br style="box-sizing: border-box;"></p></section><section style="text-align: center; font-size: 14px; color: rgb(73, 73, 73); line-height: 2.2; box-sizing: border-box;" powered-by="xiumi.us"><p style="margin: 0px; padding: 0px; box-sizing: border-box;">​所谓青春</p><p style="margin: 0px; padding: 0px; box-sizing: border-box;">并不是人生的某个阶段</p></section><section style="margin: 10px 0%; text-align: center; position: static; box-sizing: border-box;" powered-by="xiumi.us"><section style="display: inline-block; vertical-align: top; box-sizing: border-box;"> <section style="margin-bottom: -6px; line-height: 1em; padding-left: 2px; padding-right: 2px; font-size: 14px; color: rgb(213, 131, 140); box-sizing: border-box;"><p style="margin: 0px; padding: 0px; box-sizing: border-box;"><strong style="box-sizing: border-box;">而是一种心态</strong></p></section> <section style="width: 100%; height: 10px; box-sizing: border-box; line-height: 0;"> </section></section></section></section>'
     };
   }
 };
