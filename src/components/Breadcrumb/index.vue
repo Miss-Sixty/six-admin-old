@@ -36,9 +36,10 @@ export default {
     },
     toPath(item) {
       const { redirect, path } = item;
+      if (this.$route.path === redirect || this.$route.path === path) return;
+
       if (redirect) {
-        if (redirect === "noRedirect" || this.$route.path === redirect)
-          return false;
+        if (redirect === "noRedirect") return;
         return redirect;
       }
 
