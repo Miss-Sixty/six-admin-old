@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+import "@/utils/error-log"; // error log
 export default {
   name: "ErrorLog",
   computed: {
