@@ -1,12 +1,14 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <el-breadcrumb-item
-      v-for="item in levelList"
-      :key="item.path"
-      :to="toPath(item)"
-    >
-      {{ item.meta.title }}
-    </el-breadcrumb-item>
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item
+        v-for="item in levelList"
+        :key="item.path"
+        :to="toPath(item)"
+      >
+        {{ item.meta.title }}
+      </el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 
@@ -51,5 +53,27 @@ export default {
   display: inline-block;
   line-height: 50px;
   vertical-align: text-bottom;
+}
+
+/* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition-property: opacity, transform;
+  transition-duration: 0.5s, 0.5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition-property: opacity, transform;
+  transition-duration: 0.5s, 0.5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
 }
 </style>

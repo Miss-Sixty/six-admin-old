@@ -17,7 +17,6 @@ router.beforeEach(async (to, from, next) => {
   const hasToken = getToken();
 
   if (hasToken) {
-    console.log("hasToken", hasToken, to);
     if (to.path === "/login") {
       // 如果已登录，请重定向到主页
       next({ path: "/" });
@@ -55,7 +54,6 @@ router.beforeEach(async (to, from, next) => {
       }
     }
   } else {
-    console.log("login", hasToken);
     if (to.path === "/login") return next();
 
     next(`/login?redirect=${to.path}`);
