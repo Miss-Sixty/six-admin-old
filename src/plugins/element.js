@@ -23,10 +23,14 @@ import {
   Dialog,
   Table,
   TableColumn,
-  Tag
+  Tag,
+  Breadcrumb,
+  BreadcrumbItem
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Breadcrumb)
+  .use(BreadcrumbItem)
   .use(Tag)
   .use(Badge)
   .use(Dialog)

@@ -11,6 +11,11 @@ import errorRouter from "./modules/error";
 import componentsRouter from "./modules/components";
 
 /**
+ * 注意：子菜单仅在路由children.length> = 1时出现
+ * redirect: noRedirect           如果设置noRedirect，则不会在面包屑中重定向
+ */
+
+/**
  * constantRoutes
  * 没有权限要求的基本页面，所有角色都可以访问。
  */

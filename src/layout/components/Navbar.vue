@@ -4,6 +4,8 @@
       <svg-icon icon-class="hamburger" :class="{ 'is-active': opened }" />
     </div>
 
+    <breadcrumb />
+
     <div class="right-menu">
       <error-log class="navbar-icon" />
 
@@ -39,10 +41,11 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Breadcrumb from "@/components/Breadcrumb";
 import Screenfull from "@/components/Screenfull";
 import ErrorLog from "@/components/ErrorLog";
 export default {
-  components: { Screenfull, ErrorLog },
+  components: { Screenfull, ErrorLog, Breadcrumb },
   computed: {
     ...mapGetters(["opened", "avatar"])
   },
