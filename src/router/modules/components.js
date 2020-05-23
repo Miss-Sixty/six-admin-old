@@ -8,7 +8,7 @@ export default {
   redirect: "noRedirect",
   name: "ComponentDemo",
   meta: {
-    title: "Components",
+    title: "组件",
     icon: "components"
   },
   children: [
