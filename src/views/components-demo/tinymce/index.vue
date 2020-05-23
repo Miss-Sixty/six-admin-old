@@ -6,9 +6,9 @@
       虽然v5已经发布，但是汉化还没有完成，在使用中也出现了一些问题，所以暂不使用，之后视情况升级。
     </aside>
 
-    <el-row :gutter="20" type="flex">
+    <el-row :gutter="30" type="flex">
       <el-col>
-        <tinymce v-model="content" height="300" width="650" />
+        <tinymce v-model="content" height="300" width="100%" />
       </el-col>
       <el-col>
         <div v-html="content" />
