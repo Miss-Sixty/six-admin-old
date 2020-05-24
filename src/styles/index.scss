@@ -1,21 +1,33 @@
 @import "./transition.scss";
 
-body {
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+ul,
+li {
   margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  border: 0;
 }
 
 body {
-  height: 100%;
+  margin: 0;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
-}
-
-a:focus,
-a:active {
-  outline: none;
 }
 
 a,
@@ -26,20 +38,15 @@ a:hover {
   text-decoration: none;
 }
 
-div:focus {
-  outline: none;
-}
-
 //main-container全局样式
 .app-container {
   padding: 20px;
 }
 
-li {
-  list-style: none;
-}
 ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 aside {
@@ -58,4 +65,7 @@ aside {
       color: rgba($color: #409eff, $alpha: 0.6);
     }
   }
+}
+* {
+  box-sizing: content-box;
 }

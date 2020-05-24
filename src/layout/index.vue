@@ -2,7 +2,10 @@
   <div class="layout">
     <sidebar />
     <div class="layout-container" :class="{ hideSidebarWidth: !opened }">
-      <navbar class="layout-container__navbar" />
+      <div>
+        <navbar class="layout-container__navbar" />
+        <tags-view />
+      </div>
       <app-main class="layout-container__main" />
     </div>
   </div>
@@ -10,14 +13,16 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Navbar from "./components/Navbar.vue";
-import Sidebar from "./components/Sidebar/index.vue";
-import AppMain from "./components/AppMain.vue";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar/index";
+import AppMain from "./components/AppMain";
+import TagsView from "./components/TagsView";
 export default {
   components: {
     Navbar,
     Sidebar,
-    AppMain
+    AppMain,
+    TagsView
   },
   computed: {
     ...mapGetters(["opened"])
