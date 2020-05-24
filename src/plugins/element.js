@@ -25,10 +25,12 @@ import {
   TableColumn,
   Tag,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Popover
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Popover)
   .use(Breadcrumb)
   .use(BreadcrumbItem)
   .use(Tag)

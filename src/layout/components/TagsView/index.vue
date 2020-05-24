@@ -1,5 +1,5 @@
 <template>
-  <div class="tags-view">
+  <div class="tags-view" @contextmenu.prevent>
     <scroll-pane class="wrapper">
       <router-link
         class="wrapper__item"
@@ -8,11 +8,23 @@
         :to="{ path: item.path, query: item.query, fullPath: item.fullPath }"
         tag="span"
         :class="item.path === $route.path ? 'active' : ''"
+        @contextmenu.prevent.native="openMenu(item, $event)"
       >
         {{ item.title }}
         <i class="el-icon-close" @click.prevent.stop="closeSelectedTag(item)" />
       </router-link>
     </scroll-pane>
+
+    <ul
+      v-show="visible"
+      class="tags-view__menu"
+      :style="{ left: left + 'px', top: top + 'px' }"
+    >
+      <li>刷新</li>
+      <li>关闭</li>
+      <li>关闭其他</li>
+      <li>关闭全部</li>
+    </ul>
   </div>
 </template>
 <script>
@@ -24,7 +36,21 @@ export default {
   watch: {
     $route() {
       this.addTags();
+    },
+    visible(value) {
+      if (value) {
+        document.body.addEventListener("click", this.closeMenu);
+      } else {
+        document.body.removeEventListener("click", this.closeMenu);
+      }
     }
+  },
+  data() {
+    return {
+      visible: false,
+      top: 0,
+      left: 0
+    };
   },
   computed: {
     visitedViews() {
@@ -41,6 +67,25 @@ export default {
 
     closeSelectedTag(view) {
       this.$store.dispatch("tagsView/delView", { view, route: this.$route });
+    },
+
+    openMenu(item, event) {
+      const menuMinWidth = 110;
+      let elInfo = this.$el.getBoundingClientRect();
+      const maxLeft = elInfo.width - menuMinWidth; // 边界
+      const left = event.clientX - elInfo.left + 15; // 15: 窗口相当于鼠标向右移
+
+      if (left > maxLeft) {
+        this.left = maxLeft;
+      } else {
+        this.left = left;
+      }
+
+      this.top = event.clientY - elInfo.top;
+      this.visible = true;
+    },
+    closeMenu() {
+      this.visible = false;
     }
   },
   mounted() {
@@ -52,7 +97,6 @@ export default {
 @import "@/styles/var.scss";
 
 .tags-view {
-  overflow: hidden;
   user-select: none;
   position: relative;
   &::after {
@@ -98,6 +142,24 @@ export default {
         color: #fff;
         transition-property: background-color, color;
         transition-duration: 0.3s, 0.3s;
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    z-index: 3000;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+    > li {
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
       }
     }
   }
