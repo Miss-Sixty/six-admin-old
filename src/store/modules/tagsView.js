@@ -1,3 +1,5 @@
+import router from "@/router";
+import { Message } from "element-ui";
 const state = {
   visitedViews: []
 };
@@ -10,11 +12,11 @@ const mutations = {
         title: view.meta.title || "no-name"
       })
     );
-    console.log(state.visitedViews);
   },
 
   DEL_VISITED_VIEW: (state, view) => {
     const len = state.visitedViews.length;
+
     for (let i = 0; i < len; i++) {
       if (state.visitedViews[i].path === view.path) {
         return state.visitedViews.splice(i, 1);
@@ -28,7 +30,20 @@ const actions = {
     commit("ADD_VISITED_VIEW", view);
   },
 
-  delView({ commit }, view) {
+  delView({ commit, state }, view) {
+    const len = state.visitedViews.length;
+    if (1 === len) {
+      if (view.path !== "/home") {
+        commit("DEL_VISITED_VIEW", view);
+        return router.push("/home");
+      }
+
+      return Message({
+        message: "不可关闭最后一页",
+        type: "warning"
+      });
+    }
+
     commit("DEL_VISITED_VIEW", view);
   }
 };

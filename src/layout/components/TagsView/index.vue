@@ -32,15 +32,15 @@ export default {
     }
   },
   methods: {
-    closeSelectedTag(view) {
-      console.log("closeSelectedTag");
-      this.$store.dispatch("tagsView/delView", view);
-    },
     addTags() {
       const { name } = this.$route;
       if (name) {
         this.$store.dispatch("tagsView/addView", this.$route);
       }
+    },
+
+    closeSelectedTag(view) {
+      this.$store.dispatch("tagsView/delView", view);
     }
   },
   mounted() {
