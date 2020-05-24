@@ -35,6 +35,11 @@ const mutations = {
     }
 
     router.push(state.visitedViews[state.visitedViews.length - 1]);
+  },
+
+  CLOSE_OTHER: (state, view) => {
+    state.visitedViews = [view];
+    router.push(state.visitedViews[0]);
   }
 };
 
@@ -68,6 +73,10 @@ const actions = {
 
   closeRightTag({ commit }, view) {
     commit("CLOSE_RIGHT_TAG", view);
+  },
+
+  closeOther({ commit }, view) {
+    commit("CLOSE_OTHER", view);
   }
 };
 

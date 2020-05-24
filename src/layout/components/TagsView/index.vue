@@ -21,7 +21,7 @@
     >
       <li @click="refreshSelectedTag">刷新</li>
       <li @click="closeRightTag(selectedTag)">关闭右侧</li>
-      <li>关闭其他</li>
+      <li @click="closeOther(selectedTag)">关闭其他</li>
       <li>关闭全部</li>
     </ul>
   </div>
@@ -96,6 +96,10 @@ export default {
 
     closeRightTag(view) {
       this.$store.dispatch("tagsView/closeRightTag", view);
+    },
+
+    closeOther(view) {
+      this.$store.dispatch("tagsView/closeOther", view);
     }
   },
 
