@@ -8,6 +8,7 @@ export default {
     title: "错误页面",
     icon: "404"
   },
+  redirect: "noRedirect",
   children: [
     {
       path: "/401",
