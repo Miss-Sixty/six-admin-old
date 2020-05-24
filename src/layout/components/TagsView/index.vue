@@ -14,14 +14,13 @@
         <i class="el-icon-close" @click.prevent.stop="closeSelectedTag(item)" />
       </router-link>
     </scroll-pane>
-
     <ul
       v-show="visible"
       class="tags-view__menu"
       :style="{ left: left + 'px', top: top + 'px' }"
     >
-      <li>刷新</li>
-      <li>关闭</li>
+      <li @click="refreshSelectedTag">刷新</li>
+      <li>关闭右侧</li>
       <li>关闭其他</li>
       <li>关闭全部</li>
     </ul>
@@ -49,7 +48,8 @@ export default {
     return {
       visible: false,
       top: 0,
-      left: 0
+      left: 0,
+      selectedTag: null
     };
   },
   computed: {
@@ -83,11 +83,18 @@ export default {
 
       this.top = event.clientY - elInfo.top;
       this.visible = true;
+      this.selectedTag = item;
     },
+
     closeMenu() {
       this.visible = false;
+    },
+
+    refreshSelectedTag() {
+      this.$store.commit("reload/RELOAD");
     }
   },
+
   mounted() {
     this.addTags();
   }
