@@ -30,18 +30,24 @@ const actions = {
     commit("ADD_VISITED_VIEW", view);
   },
 
-  delView({ commit, state }, view) {
-    const len = state.visitedViews.length;
-    if (1 === len) {
-      if (view.path !== "/home") {
-        commit("DEL_VISITED_VIEW", view);
-        return router.push("/home");
+  delView({ commit, state }, { view, route }) {
+    if (1 === state.visitedViews.length) {
+      if (view.path === "/home") {
+        return Message({
+          message: "不可关闭最后一页",
+          type: "warning"
+        });
       }
 
-      return Message({
-        message: "不可关闭最后一页",
-        type: "warning"
-      });
+      commit("DEL_VISITED_VIEW", view);
+      return router.push("/home");
+    }
+
+    if (view.path === route.path) {
+      commit("DEL_VISITED_VIEW", view);
+      return router.push(
+        state.visitedViews[state.visitedViews.length - 1].path
+      );
     }
 
     commit("DEL_VISITED_VIEW", view);

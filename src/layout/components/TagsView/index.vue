@@ -40,7 +40,7 @@ export default {
     },
 
     closeSelectedTag(view) {
-      this.$store.dispatch("tagsView/delView", view);
+      this.$store.dispatch("tagsView/delView", { view, route: this.$route });
     }
   },
   mounted() {
