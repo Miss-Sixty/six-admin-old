@@ -11,12 +11,25 @@ const mutations = {
       })
     );
     console.log(state.visitedViews);
+  },
+
+  DEL_VISITED_VIEW: (state, view) => {
+    const len = state.visitedViews.length;
+    for (let i = 0; i < len; i++) {
+      if (state.visitedViews[i].path === view.path) {
+        return state.visitedViews.splice(i, 1);
+      }
+    }
   }
 };
 
 const actions = {
   addView({ commit }, view) {
     commit("ADD_VISITED_VIEW", view);
+  },
+
+  delView({ commit }, view) {
+    commit("DEL_VISITED_VIEW", view);
   }
 };
 

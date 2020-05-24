@@ -10,7 +10,7 @@
         :class="item.path === $route.path ? 'active' : ''"
       >
         {{ item.title }}
-        <i class="el-icon-close" @click.prevent.stop="closeSelectedTag" />
+        <i class="el-icon-close" @click.prevent.stop="closeSelectedTag(item)" />
       </router-link>
     </scroll-pane>
   </div>
@@ -32,8 +32,9 @@ export default {
     }
   },
   methods: {
-    closeSelectedTag() {
+    closeSelectedTag(view) {
       console.log("closeSelectedTag");
+      this.$store.dispatch("tagsView/delView", view);
     },
     addTags() {
       const { name } = this.$route;
