@@ -19,9 +19,22 @@ const mutations = {
 
     for (let i = 0; i < len; i++) {
       if (state.visitedViews[i].path === view.path) {
-        return state.visitedViews.splice(i, 1);
+        state.visitedViews.splice(i, 1);
+        break;
       }
     }
+  },
+
+  CLOSE_RIGHT_TAG: (state, view) => {
+    const len = state.visitedViews.length;
+    for (let i = 0; i < len; i++) {
+      if (state.visitedViews[i].path === view.path) {
+        state.visitedViews = state.visitedViews.splice(0, i + 1);
+        break;
+      }
+    }
+
+    router.push(state.visitedViews[state.visitedViews.length - 1]);
   }
 };
 
@@ -51,6 +64,10 @@ const actions = {
     }
 
     commit("DEL_VISITED_VIEW", view);
+  },
+
+  closeRightTag({ commit }, view) {
+    commit("CLOSE_RIGHT_TAG", view);
   }
 };
 

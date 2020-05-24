@@ -20,7 +20,7 @@
       :style="{ left: left + 'px', top: top + 'px' }"
     >
       <li @click="refreshSelectedTag">刷新</li>
-      <li>关闭右侧</li>
+      <li @click="closeRightTag(selectedTag)">关闭右侧</li>
       <li>关闭其他</li>
       <li>关闭全部</li>
     </ul>
@@ -92,6 +92,10 @@ export default {
 
     refreshSelectedTag() {
       this.$store.commit("reload/RELOAD");
+    },
+
+    closeRightTag(view) {
+      this.$store.dispatch("tagsView/closeRightTag", view);
     }
   },
 

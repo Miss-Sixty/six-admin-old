@@ -2,10 +2,8 @@
   <div class="layout">
     <sidebar />
     <div class="layout-container" :class="{ hideSidebarWidth: !opened }">
-      <div>
-        <navbar class="layout-container__navbar" />
-        <tags-view />
-      </div>
+      <navbar class="layout-container__navbar" />
+      <tags-view />
       <app-main class="layout-container__main" />
     </div>
   </div>
