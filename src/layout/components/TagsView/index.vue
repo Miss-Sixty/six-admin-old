@@ -102,7 +102,10 @@ export default {
     },
 
     closeOther(view) {
-      this.$store.commit("tagsView/CLOSE_OTHER", view);
+      this.$store.commit("tagsView/CLOSE_OTHER", {
+        view,
+        route: this.$route
+      });
     },
 
     closeAll() {

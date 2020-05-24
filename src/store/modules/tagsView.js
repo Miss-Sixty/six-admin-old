@@ -49,9 +49,9 @@ const mutations = {
     }
   },
 
-  CLOSE_OTHER: (state, view) => {
+  CLOSE_OTHER: (state, { view, route }) => {
     state.visitedViews = [view];
-    router.push(state.visitedViews[0]);
+    if (view.path !== route.path) router.push(state.visitedViews[0]);
   },
 
   CLOSE_All: () => {
