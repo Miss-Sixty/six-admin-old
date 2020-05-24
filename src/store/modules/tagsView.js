@@ -25,21 +25,38 @@ const mutations = {
     }
   },
 
-  CLOSE_RIGHT_TAG: (state, view) => {
+  CLOSE_RIGHT_TAG: (state, { view, route }) => {
     const len = state.visitedViews.length;
+    let closeIndex; //点击关闭页
+    let currentIndex; //当前页
+
     for (let i = 0; i < len; i++) {
       if (state.visitedViews[i].path === view.path) {
-        state.visitedViews = state.visitedViews.splice(0, i + 1);
-        break;
+        closeIndex = i;
+        if (closeIndex && currentIndex) break;
+      }
+
+      if (state.visitedViews[i].path === route.path) {
+        currentIndex = i;
+        if (closeIndex && currentIndex) break;
       }
     }
 
-    router.push(state.visitedViews[state.visitedViews.length - 1]);
+    state.visitedViews = state.visitedViews.splice(0, closeIndex + 1);
+
+    if (closeIndex < currentIndex) {
+      router.push(state.visitedViews[state.visitedViews.length - 1]);
+    }
   },
 
   CLOSE_OTHER: (state, view) => {
     state.visitedViews = [view];
     router.push(state.visitedViews[0]);
+  },
+
+  CLOSE_All: () => {
+    state.visitedViews = [];
+    router.push("/home");
   }
 };
 
@@ -69,14 +86,6 @@ const actions = {
     }
 
     commit("DEL_VISITED_VIEW", view);
-  },
-
-  closeRightTag({ commit }, view) {
-    commit("CLOSE_RIGHT_TAG", view);
-  },
-
-  closeOther({ commit }, view) {
-    commit("CLOSE_OTHER", view);
   }
 };
 
