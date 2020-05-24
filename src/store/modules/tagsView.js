@@ -72,10 +72,6 @@ const mutations = {
 };
 
 const actions = {
-  addView({ commit }, view) {
-    commit("ADD_VISITED_VIEW", view);
-  },
-
   delView({ commit, state }, { view, route }) {
     if (1 === state.visitedViews.length) {
       if (view.path === "/home") {
