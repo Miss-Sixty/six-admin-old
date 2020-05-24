@@ -54,7 +54,18 @@ const mutations = {
     if (view.path !== route.path) router.push(state.visitedViews[0]);
   },
 
-  CLOSE_All: () => {
+  CLOSE_All: (state, { view, route }) => {
+    if (
+      state.visitedViews.length === 1 &&
+      view.path === route.path &&
+      route.path === "/home"
+    )
+      return;
+
+    if (route.path === "/home") {
+      return (state.visitedViews = [view]);
+    }
+
     state.visitedViews = [];
     router.push("/home");
   }

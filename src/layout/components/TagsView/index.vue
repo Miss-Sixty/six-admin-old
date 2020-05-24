@@ -22,7 +22,7 @@
       <li @click="refreshSelectedTag">刷新</li>
       <li @click="closeRightTag(selectedTag)">关闭右侧</li>
       <li @click="closeOther(selectedTag)">关闭其他</li>
-      <li @click="closeAll">关闭全部</li>
+      <li @click="closeAll(selectedTag)">关闭全部</li>
     </ul>
   </div>
 </template>
@@ -108,8 +108,8 @@ export default {
       });
     },
 
-    closeAll() {
-      this.$store.commit("tagsView/CLOSE_All");
+    closeAll(view) {
+      this.$store.commit("tagsView/CLOSE_All", { view, route: this.$route });
     }
   },
 
