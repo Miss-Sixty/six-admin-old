@@ -42,6 +42,9 @@ export default {
         this.$store.dispatch("tagsView/addView", this.$route);
       }
     }
+  },
+  mounted() {
+    this.addTags();
   }
 };
 </script>
