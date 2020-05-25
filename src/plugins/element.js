@@ -26,10 +26,20 @@ import {
   Tag,
   Breadcrumb,
   BreadcrumbItem,
-  Popover
+  Popover,
+  Select,
+  Option,
+  RadioButton,
+  RadioGroup,
+  Loading
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Loading)
+  .use(RadioGroup)
+  .use(RadioButton)
+  .use(Select)
+  .use(Option)
   .use(Popover)
   .use(Breadcrumb)
   .use(BreadcrumbItem)

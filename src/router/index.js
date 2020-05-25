@@ -9,6 +9,7 @@ import Layout from "@/layout";
 import nestedRouter from "./modules/nested";
 import errorRouter from "./modules/error";
 import componentsRouter from "./modules/components";
+import excel from "./modules/excel";
 
 /**
  * 注意：子菜单仅在路由children.length> = 1时出现
@@ -59,7 +60,6 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
-  nestedRouter,
   componentsRouter,
   {
     path: "/icon",
@@ -73,7 +73,7 @@ export const asyncRoutes = [
       }
     ]
   },
-  errorRouter,
+
   {
     path: "/charts",
     component: Layout,
@@ -87,6 +87,9 @@ export const asyncRoutes = [
       }
     ]
   },
+  excel,
+  nestedRouter,
+  errorRouter,
   {
     path: "/error-log",
     component: Layout,
