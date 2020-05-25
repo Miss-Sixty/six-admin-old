@@ -19,7 +19,7 @@ export default {
   white-space: nowrap;
   overflow-x: auto;
   padding: 6px 20px;
-
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
