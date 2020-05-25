@@ -1,16 +1,24 @@
 <template>
-  <div class="wrapper" @mousewheel="horizontalWheel">
+  <div class="wrapper">
     <slot />
   </div>
 </template>
 <script>
 export default {
   name: "ScrollPane",
-  methods: {
-    horizontalWheel(event) {
-      this.$el.scrollLeft += event.deltaY;
+  mounted() {
+    const wheelEvent =
+      "onwheel" in this.$el
+        ? "wheel" // Modern browsers support "wheel"
+        : document.onmousewheel !== undefined
+        ? "mousewheel" // Webkit and IE support at least "mousewheel"
+        : "DOMMouseScroll"; //滚动事件的兼容
+
+    this.$el.addEventListener(wheelEvent, event => {
       event.preventDefault();
-    }
+
+      this.$el.scrollLeft += -event.wheelDelta || event.deltaY;
+    });
   }
 };
 </script>
