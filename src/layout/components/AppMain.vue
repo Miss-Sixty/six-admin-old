@@ -18,9 +18,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/var.scss";
+
 .app-main {
-  /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  /* 50= navbar  height */
+  /* 40= tagsView height */
+  min-height: calc(100vh - $navbarHeight - $tagsViewHeight);
   width: 100%;
   position: relative;
   overflow: hidden;

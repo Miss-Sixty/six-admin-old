@@ -10,6 +10,12 @@ $hideSidebarWidth: 65px;
 $menuText: #ccd5df;
 $menuBg: #304156;
 
+// navbar
+$navbarHeight: 50px;
+
+//tagsView
+$tagsViewHeight: 40px;
+
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {

@@ -58,10 +58,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/var.scss";
+
 .navbar {
   background-color: #fff;
-  height: 50px;
-  line-height: 50px;
+  height: $navbarHeight;
+  line-height: $navbarHeight;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .is-active {
@@ -85,7 +87,7 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 50px;
+    line-height: $navbarHeight;
     &:focus {
       outline: none;
     }
