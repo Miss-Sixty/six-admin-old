@@ -115,7 +115,9 @@ export default {
       return resolve(basePath, routePath);
     }
 
-    return !item.hidden && hasOneShowingChild(item.children, item)
+    return !item.hidden &&
+      hasOneShowingChild(item.children, item) &&
+      !item.alwaysShow
       ? menuItem(onlyOneChild)
       : submenu(item);
   }
