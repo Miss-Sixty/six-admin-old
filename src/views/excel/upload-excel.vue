@@ -1,12 +1,17 @@
 <template>
   <div class="app-container">
-    <upload :on-success="handleSuccess" :before-upload="beforeUpload" />
+    <upload
+      :on-success="handleSuccess"
+      :before-upload="beforeUpload"
+      style="margin-bottom:20px"
+    />
     <el-table :data="tableData" border>
       <el-table-column
         v-for="item of tableHeader"
         :key="item"
         :prop="item"
         :label="item"
+        align="center"
       />
     </el-table>
   </div>
