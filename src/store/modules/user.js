@@ -50,7 +50,6 @@ const actions = {
       getInfo(state.token)
         .then(res => {
           const { data } = res;
-          console.log(data);
           if (!data) {
             reject("验证失败，请重新登录。");
           }

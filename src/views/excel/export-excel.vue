@@ -2,13 +2,20 @@
   <div class="app-container">
     <div class="tools-bar">
       <excel-input
-        v-model="formData.name"
+        v-model="filename"
         label="文件名"
-        placeholder="导出文件名(默认excel)"
+        placeholder="导出文件名(excel-list)"
       />
-      <excel-select v-model="formData.type" label="导出类型" />
-      <excel-radio v-model="formData.autoWidth" label="自动列宽" />
-      <el-button type="success" icon="el-icon-document">导出 Excel</el-button>
+      <excel-select v-model="bookType" label="导出类型" :options="options" />
+      <excel-radio v-model="autoWidth" label="自动列宽" />
+      <el-button
+        :loading="downloadLoading"
+        type="success"
+        icon="el-icon-document"
+        @click="handleDownload"
+      >
+        导出 Excel
+      </el-button>
     </div>
 
     <el-table :data="tableList" border v-loading="formLoading">
@@ -23,7 +30,7 @@
         <el-tag slot-scope="{ row }">{{ row.author }}</el-tag>
       </el-table-column>
       <el-table-column prop="pageViews" label="访问量" align="center" />
-      <el-table-column prop="time" label="时间" align="center" />
+      <el-table-column prop="datetime" label="时间" align="center" />
     </el-table>
   </div>
 </template>
@@ -42,20 +49,45 @@ export default {
   },
   data() {
     return {
-      formData: {
-        name: "",
-        type: "xlsx",
-        autoWidth: true
-      },
+      filename: "",
+      bookType: "xlsx",
+      options: ["xlsx", "csv", "txt"],
+      autoWidth: true,
       formLoading: false,
       tableList: [],
-      total: 0
+      total: 0,
+      downloadLoading: false
     };
   },
   mounted() {
     this.getFormData();
   },
   methods: {
+    handleDownload() {
+      this.downloadLoading = true;
+      import("@/vendor/Export2Excel").then(excel => {
+        const tHeader = ["Id", "标题", "作者", "访问量", "时间"];
+        const filterVal = ["id", "title", "author", "pageViews", "datetime"];
+        const list = this.tableList;
+        const data = this.formatJson(filterVal, list);
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: this.filename,
+          autoWidth: this.autoWidth,
+          bookType: this.bookType
+        });
+        this.downloadLoading = false;
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          return v[j];
+        })
+      );
+    },
+
     getFormData() {
       this.formLoading = true;
       fetchList().then(res => {

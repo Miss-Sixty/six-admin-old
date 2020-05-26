@@ -10,7 +10,7 @@ for (let i = 0; i < count; i++) {
       title: "@ctitle",
       author: "@cname",
       pageViews: "@natural(999, 20000)",
-      time: "@datetime"
+      datetime: "@datetime"
     })
   );
 }
