@@ -1,37 +1,15 @@
 <template>
   <div class="app-container">
-    <el-form ref="toolsBar" :inline="true" size="medium" :model="formData">
-      <el-form-item label="文件名">
-        <el-input
-          clearable
-          v-model="formData.name"
-          placeholder="导出文件名(默认excel)"
-        />
-      </el-form-item>
-
-      <el-form-item label="导出类型">
-        <el-select v-model="formData.type">
-          <el-option value="xlsx" />
-          <el-option value="csv" />
-          <el-option value="txt" />
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="自动列宽">
-        <el-radio-group v-model="formData.autoWidth">
-          <el-radio-button :label="true">
-            是
-          </el-radio-button>
-          <el-radio-button :label="false">
-            否
-          </el-radio-button>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="success" icon="el-icon-document">导出 Excel</el-button>
-      </el-form-item>
-    </el-form>
+    <div class="tools-bar">
+      <excel-input
+        v-model="formData.name"
+        label="文件名"
+        placeholder="导出文件名(默认excel)"
+      />
+      <excel-select v-model="formData.type" label="导出类型" />
+      <excel-radio v-model="formData.autoWidth" label="自动列宽" />
+      <el-button type="success" icon="el-icon-document">导出 Excel</el-button>
+    </div>
 
     <el-table :data="tableList" border v-loading="formLoading">
       <el-table-column label="序号" width="55" align="center">
@@ -40,19 +18,28 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="date" label="标题" />
-      <el-table-column prop="author" label="作者">
+      <el-table-column prop="title" label="标题" align="center" />
+      <el-table-column prop="author" label="作者" align="center">
         <el-tag slot-scope="{ row }">{{ row.author }}</el-tag>
       </el-table-column>
-      <el-table-column prop="pageViews" label="访问量" />
-      <el-table-column prop="date" label="时间" />
+      <el-table-column prop="pageViews" label="访问量" align="center" />
+      <el-table-column prop="time" label="时间" align="center" />
     </el-table>
   </div>
 </template>
 <script>
 import { fetchList } from "@/api/article";
+import ExcelInput from "./components/Input";
+import ExcelSelect from "./components/Select";
+import ExcelRadio from "./components/Radio";
+
 export default {
   name: "ExportExcel",
+  components: {
+    ExcelInput,
+    ExcelSelect,
+    ExcelRadio
+  },
   data() {
     return {
       formData: {
@@ -60,31 +47,9 @@ export default {
         type: "xlsx",
         autoWidth: true
       },
-
       formLoading: false,
-
-      tableList: [
-        {
-          date: "2016-05-02",
-          author: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          author: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          author: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          author: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      tableList: [],
+      total: 0
     };
   },
   mounted() {
@@ -94,11 +59,27 @@ export default {
     getFormData() {
       this.formLoading = true;
       fetchList().then(res => {
-        console.log(res);
-        this.tableList = res.data.items;
+        const { items: tableList, total } = res.data;
+        this.tableList = tableList;
+        this.total = total;
         this.formLoading = false;
       });
     }
   }
 };
 </script>
+<style lang="scss">
+.label {
+  font-size: 14px;
+  color: #606266;
+  line-height: 40px;
+}
+</style>
+<style lang="scss" scoped>
+.tools-bar {
+  > * {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
+</style>
