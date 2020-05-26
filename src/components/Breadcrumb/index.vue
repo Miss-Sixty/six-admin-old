@@ -39,7 +39,7 @@ export default {
       if (this.$route.path === redirect || this.$route.path === path) return;
 
       if (redirect) {
-        if (redirect === "noRedirect") return;
+        if (!redirect || redirect === "noRedirect") return;
         return redirect;
       }
 
