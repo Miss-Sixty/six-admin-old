@@ -88,7 +88,7 @@ export default {
     };
   },
   mounted() {
-    // this.getFormData();
+    this.getFormData();
   },
   methods: {
     getFormData() {

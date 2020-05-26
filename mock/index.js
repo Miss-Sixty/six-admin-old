@@ -1,9 +1,19 @@
 import Mock from "mockjs";
 import { param2Obj } from "../src/utils";
+const fs = require("fs-extra");
+const path = require("path");
+const articleDir = path.resolve("mock/controller");
 
-import user from "./controller/user";
+let mocks = [];
+function getFiles(dir) {
+  const files = fs.readdirSync(dir);
+  files.forEach(file => {
+    const obj = require(path.join(dir, file)).default;
+    mocks.push(...obj);
+  });
+}
 
-const mocks = [...user];
+getFiles(articleDir);
 
 export function mockXHR() {
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send;

@@ -8,8 +8,10 @@ import "@/styles/index.scss";
 import "@/icons"; // icon
 import "@/permission"; // permission control
 
-const { mockXHR } = require("../mock");
-mockXHR();
+if (process.env.NODE_ENV === "production") {
+  const { mockXHR } = require("../mock");
+  mockXHR();
+}
 
 Vue.config.productionTip = false;
 

@@ -10,7 +10,7 @@ export default [
       console.log(config);
 
       return {
-        code: 20000,
+        code: 200,
         data: {
           title: 1
         }

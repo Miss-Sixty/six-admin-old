@@ -1,9 +1,9 @@
-const chokidar = require("chokidar");
-const bodyParser = require("body-parser");
-const chalk = require("chalk");
+const chokidar = require("chokidar"); //文件监控
+const bodyParser = require("body-parser"); //块会处理application/x-www-form-urlencoded、application/json两种格式的请求体。
+const chalk = require("chalk"); //控制台输出
 const path = require("path");
 
-const mockDir = path.join(process.cwd(), "mock");
+const mockDir = path.resolve("mock");
 
 function registerRoutes(app) {
   let mockLastIndex;
@@ -50,7 +50,7 @@ module.exports = app => {
       ignored: /mock-server/,
       ignoreInitial: true
     })
-    .on("all", (event, path) => {
+    .on("all", event => {
       if (event === "change" || event === "add") {
         try {
           // remove mock routes stack
@@ -63,11 +63,7 @@ module.exports = app => {
           mockRoutesLength = mockRoutes.mockRoutesLength;
           mockStartIndex = mockRoutes.mockStartIndex;
 
-          console.log(
-            chalk.magentaBright(
-              `\n > Mock Server hot reload success! changed  ${path}`
-            )
-          );
+          //console.log(chalk.blue(`> Mock服务热更新成功：${path}`));
         } catch (error) {
           console.log(chalk.redBright(error));
         }
