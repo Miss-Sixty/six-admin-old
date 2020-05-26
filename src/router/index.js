@@ -10,6 +10,7 @@ import nestedRouter from "./modules/nested";
 import errorRouter from "./modules/error";
 import componentsRouter from "./modules/components";
 import excel from "./modules/excel";
+import table from "./modules/table";
 
 /**
  * 注意：子菜单仅在路由children.length> = 1时出现
@@ -87,6 +88,7 @@ export const asyncRoutes = [
       }
     ]
   },
+  table,
   excel,
   nestedRouter,
   errorRouter,
