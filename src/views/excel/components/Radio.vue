@@ -1,7 +1,7 @@
 <template>
   <div class="excel-input">
     <label class="label" v-if="label">{{ label }}：</label>
-    <el-radio-group v-model="autoWidth">
+    <el-radio-group v-model="autoWidth" size="small">
       <el-radio-button :label="true">
         是
       </el-radio-button>

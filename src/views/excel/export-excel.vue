@@ -13,6 +13,7 @@
         type="success"
         icon="el-icon-document"
         @click="handleDownload"
+        size="small"
       >
         导出 Excel
       </el-button>

@@ -7,6 +7,7 @@
       v-model="filename"
       :placeholder="placeholder"
       :style="{ width: width }"
+      size="small"
     />
   </div>
 </template>

@@ -1,7 +1,12 @@
 <template>
   <div class="excel-input">
     <label class="label" :for="autoWidth" v-if="label">{{ label }}：</label>
-    <el-select :id="autoWidth" v-model="autoWidth" :style="{ width: width }">
+    <el-select
+      :id="autoWidth"
+      v-model="autoWidth"
+      :style="{ width: width }"
+      size="small"
+    >
       <el-option :value="item" v-for="item in options" :key="item" />
     </el-select>
   </div>
