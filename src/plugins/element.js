@@ -31,10 +31,12 @@ import {
   Option,
   RadioButton,
   RadioGroup,
-  Loading
+  Loading,
+  DatePicker
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(DatePicker)
   .use(Loading)
   .use(RadioGroup)
   .use(RadioButton)
