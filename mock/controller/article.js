@@ -10,8 +10,9 @@ for (let i = 0; i < count; i++) {
       title: "@ctitle",
       author: "@cname",
       pageViews: "@natural(999, 20000)",
-      datetime: "@datetime",
-      introduction: "@cparagraph(1, 2)"
+      introduction: "@cparagraph(1, 2)",
+      timestamp: +Mock.Random.date("T"),
+      "status|1": ["draft", "published", "deleted"]
     })
   );
 }
@@ -19,11 +20,32 @@ for (let i = 0; i < count; i++) {
 export default [
   {
     url: "/article/list",
-    type: "get",
+    type: "post",
     response: config => {
-      const { page = 1, limit = 20 } = config.query;
+      const {
+        title,
+        author,
+        timestamp,
+        status,
+        page = 1,
+        limit = 20
+      } = config.body;
 
-      const pageList = List.filter(
+      let mockList = List.filter(item => {
+        if (status && item.status !== status) return false;
+        if (title && item.title.indexOf(title) < 0) return false;
+        if (author && item.author.indexOf(author) < 0) return false;
+
+        if (timestamp) {
+          return (
+            timestamp[0] < item.timestamp && timestamp[1] >= item.timestamp
+          );
+        }
+
+        return true;
+      });
+
+      const pageList = mockList.filter(
         (item, index) => index < limit * page && index >= limit * (page - 1)
       );
 

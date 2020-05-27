@@ -7,38 +7,39 @@
     />
 
     <el-select
-      v-model="toolsBarData.importance"
+      v-model="toolsBarData.status"
       clearable
       style="width:200px;"
       placeholder="请选择状态"
     >
       <el-option
         v-for="item in importanceOptions"
-        :key="item"
-        :label="item"
-        :value="item"
+        :key="item.name"
+        :label="item.lable"
+        :value="item.value"
       />
     </el-select>
 
     <el-date-picker
-      v-model="toolsBarData.date"
+      v-model="toolsBarData.timestamp"
       type="daterange"
-      range-separator="至"
+      value-format="timestamp"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       style="width:300px;"
     />
 
-    <el-button type="primary" icon="el-icon-search" @click="handleFilter"
-      >搜索</el-button
-    >
+    <el-button type="primary" icon="el-icon-search" @click="handleFilter">
+      搜索
+    </el-button>
     <el-button
       type="primary"
       icon="el-icon-edit"
       @click="$emit('handleAdd')"
       style="margin-left:0;"
-      >添加</el-button
     >
+      添加
+    </el-button>
   </div>
 </template>
 <script>
@@ -48,11 +49,24 @@ export default {
   },
   data() {
     return {
-      importanceOptions: ["2"],
+      importanceOptions: [
+        {
+          value: "draft",
+          lable: "草稿"
+        },
+        {
+          value: "published",
+          lable: "已发布"
+        },
+        {
+          value: "deleted",
+          lable: "已删除"
+        }
+      ],
       toolsBarData: {
         title: "",
-        importance: "",
-        date: ""
+        type: "",
+        timestamp: ""
       }
     };
   },

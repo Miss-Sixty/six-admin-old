@@ -32,10 +32,12 @@ import {
   RadioButton,
   RadioGroup,
   Loading,
-  DatePicker
+  DatePicker,
+  Pagination
 } from "element-ui";
 
 Vue.use(Menu)
+  .use(Pagination)
   .use(DatePicker)
   .use(Loading)
   .use(RadioGroup)
